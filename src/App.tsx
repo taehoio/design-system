@@ -38,7 +38,7 @@ const Colors = {
 
 const Section: React.FC<{
   title: string;
-}> = ({children, title}) => {
+}> = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -64,6 +64,8 @@ const Section: React.FC<{
   );
 };
 
+import StorybookUIRoot from '../storybook';
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -72,6 +74,8 @@ const App = () => {
   };
 
   return (
+    <StorybookUIRoot />
+    /*
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
@@ -97,6 +101,7 @@ const App = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+    */
   );
 };
 
