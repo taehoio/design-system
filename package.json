@@ -1,64 +1,34 @@
 {
-  "name": "designsystem",
+  "name": "design-system",
   "version": "0.0.1",
   "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "web": "react-scripts start",
-    "start": "react-native start",
-    "test": "jest",
+    "android": "yarn workspace mobile android",
+    "ios": "yarn workspace mobile ios",
+    "web": "yarn workspace mobile web",
+    "start": "yarn workspace mobile start",
+    "test": "yarn workspaces run test",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook"
-  },
-  "dependencies": {
-    "react": "17.0.1",
-    "react-dom": "^17.0.2",
-    "react-native": "0.64.1",
-    "react-native-web": "^0.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^3.0.0",
-    "@storybook/react": "^6.3.6",
     "@types/jest": "^26.0.23",
-    "@types/react-native": "^0.64.5",
-    "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "babel-loader": "^8.2.2",
     "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
-    "metro-react-native-babel-preset": "^0.64.0",
-    "react-scripts": "^4.0.3",
-    "react-test-renderer": "17.0.1",
     "typescript": "^4.1.0"
   },
   "resolutions": {
     "@types/react": "^17"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
