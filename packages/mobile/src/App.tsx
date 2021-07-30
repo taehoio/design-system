@@ -1,112 +1,130 @@
 import React from 'react';
+import { Button, StyleSheet, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-//import {
-//  Colors,
-//  DebugInstructions,
-//  Header,
-//  LearnMoreLinks,
-//  ReloadInstructions,
-//} from 'react-native/Libraries/NewAppScreen';
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
-const Colors = {
-  white: '#ffffff',
-  black: '#000000',
-  light: '#e0e0e0',
-  dark: '#404040',
-  lighter: '#f5f5f5',
-  darker: '#202020',
+type RootStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Settings: undefined;
+  Details: undefined;
 };
 
-const Section: React.FC<{
-  title: string;
-}> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
+const HomeScreen = ({
+  navigation,
+}: {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+}) => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.screen}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Profile"
+        onPress={() => navigation.navigate('Profile')}
+      />
     </View>
   );
 };
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+const ProfileScreen = () => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <Text style={styles.sectionDescription}>Hello world!</Text>
-          </Section>
-          <Section title="Debug">
-            <Text style={styles.sectionDescription}>Hello world!</Text>
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.screen}>
+      <Text>Profile Screen</Text>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+const HomeStack = createStackNavigator();
+
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Profile" component={ProfileScreen} />
+    </HomeStack.Navigator>
+  );
+};
+
+const SettingsScreen = ({
+  navigation,
+}: {
+  navigation: StackNavigationProp<RootStackParamList, 'Settings'>;
+}) => {
+  return (
+    <View style={styles.screen}>
+      <Text>Settings Screen</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+};
+
+const DetailsScreen = () => {
+  return (
+    <View style={styles.screen}>
+      <Text>Details Screen</Text>
+    </View>
+  );
+};
+
+const SettingsStack = createStackNavigator();
+
+const SettingsStackScreen = () => {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+    </SettingsStack.Navigator>
+  );
+};
+
+const linkConfig = {
+  screens: {
+    HomeStack: {
+      screens: {
+        Home: 'home',
+        Profile: 'user',
+      },
+    },
+    SettingsStack: {
+      screens: {
+        Settings: 'settings',
+        Details: 'details',
+      },
+    },
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+};
+
+const linking = {
+  prefixes: ['http://localhost:3000'],
+  config: linkConfig,
+};
+
+const Tab = createBottomTabNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Settings" component={SettingsStackScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default App;
