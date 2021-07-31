@@ -117,7 +117,7 @@ const linking = {
 
 const Tab = createBottomTabNavigator();
 
-const App = () => {
+export const App = () => {
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
       <Tab.Navigator
