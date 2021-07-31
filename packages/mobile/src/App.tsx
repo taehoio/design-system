@@ -6,6 +6,7 @@ import {
   StackNavigationProp,
 } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const styles = StyleSheet.create({
   screen: {
@@ -119,7 +120,22 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName: string = '';
+
+            if (route.name === 'Home') {
+              iconName = 'ios-information-circle-outline';
+            } else if (route.name === 'Settings') {
+              iconName = 'ios-list-outline';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{}}>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
