@@ -5,8 +5,6 @@ import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const styles = StyleSheet.create({
   screen: {
@@ -71,8 +69,6 @@ const linking = {
   prefixes: ['http://localhost:3000'],
   config: linkConfig,
 };
-
-const Tab = createBottomTabNavigator();
 
 export const App = () => {
   return (

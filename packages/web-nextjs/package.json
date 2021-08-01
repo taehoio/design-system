@@ -1,10 +1,13 @@
 {
 	"name": "web-nextjs",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
-		"start": "next start"
+		"start": "next start",
+		"test": "jest --passWithNoTests",
+		"lint": "eslint . --ext .js,.jsx,.ts,.tsx"
 	},
 	"dependencies": {
 		"next": "^11.0.1",
@@ -13,6 +16,7 @@
 		"react-native-web": "^0.17.1"
 	},
 	"devDependencies": {
-		"babel-plugin-react-native-web": "^0.17.1"
+		"babel-plugin-react-native-web": "^0.17.1",
+		"eslint-config-next": "^11.0.1"
 	}
 }
