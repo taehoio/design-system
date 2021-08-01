@@ -13,7 +13,7 @@
     "web": "yarn workspace mobile web",
     "start": "yarn workspace mobile start",
     "test": "yarn workspaces run test",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "yarn workspaces run lint",
     "storybook": "start-storybook"
   },
   "devDependencies": {
