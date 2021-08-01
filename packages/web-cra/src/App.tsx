@@ -1,10 +1,12 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { Button, StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   createStackNavigator,
   StackNavigationProp,
 } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const styles = StyleSheet.create({
   screen: {
@@ -70,7 +72,9 @@ const linking = {
   config: linkConfig,
 };
 
-export const App = (): ReactElement => {
+const Tab = createBottomTabNavigator();
+
+export const App = () => {
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
       <HomeStackScreen />
