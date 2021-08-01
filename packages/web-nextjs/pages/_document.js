@@ -1,7 +1,8 @@
-import { Children } from 'react';
+import React, { Children } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, StyleSheet } from 'react-native';
 import config from '../app.json';
+
 // Force Next-generated DOM elements to fill their parent's height
 const normalizeNextElements = `
   #__next {
@@ -11,23 +12,28 @@ const normalizeNextElements = `
   }
 `;
 
+const styles = StyleSheet.create({
+  html: { height: '100%' },
+  body: { height: '100%', overflow: 'hidden' },
+});
+
 export default class MyDocument extends Document {
   static async getInitialProps({ renderPage }) {
     AppRegistry.registerComponent(config.name, () => Main);
     const { getStyleElement } = AppRegistry.getApplication(config.name);
     const page = await renderPage();
-    const styles = [
+    const documentStyles = [
       <style dangerouslySetInnerHTML={{ __html: normalizeNextElements }} />,
       getStyleElement(),
     ];
-    return { ...page, styles: Children.toArray(styles) };
+    return { ...page, styles: Children.toArray(documentStyles) };
   }
 
   render() {
     return (
-      <Html style={{ height: '100%' }}>
+      <Html style={styles.html}>
         <Head />
-        <body style={{ height: '100%', overflow: 'hidden' }}>
+        <body style={styles.body}>
           <Main />
           <NextScript />
         </body>

@@ -1,18 +1,18 @@
 {
 	"name": "web-nextjs",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
-		"start": "next start"
+		"start": "next start",
+		"test": "jest --passWithNoTests"
 	},
 	"dependencies": {
-		"next": "^11.0.1",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-native-web": "^0.17.1"
+		"react": "*",
+		"react-dom": "*",
+		"react-native": "*",
+		"react-native-web": "*"
 	},
-	"devDependencies": {
-		"babel-plugin-react-native-web": "^0.17.1"
-	}
+	"devDependencies": {}
 }
