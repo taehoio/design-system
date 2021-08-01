@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function Alternate() {
@@ -8,7 +7,7 @@ export default function Alternate() {
         Alternate Page
       </Text>
 
-      <Text style={styles.link} accessibilityRole="link" href={'/'}>
+      <Text style={styles.link} accessibilityRole="link" href={`/`}>
         Go Back
       </Text>
     </View>
