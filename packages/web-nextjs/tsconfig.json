@@ -3,7 +3,8 @@
     "target": "esnext",
     "module": "esnext",
     "lib": [
-      "es2017"
+      "es2017",
+      "dom"
     ],
     "allowJs": true,
     "jsx": "preserve",
@@ -13,7 +14,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true
