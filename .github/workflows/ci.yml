@@ -139,4 +139,5 @@ jobs:
 
       - name: Gradle iOS
         working-directory: ./packages/mobile/ios
-        run: 
+        run: |
+          xcodebuild -workspace DesignSystem.xcworkspace -scheme DesignSystem archive -archivePath DesignSystem.xcarchive -allowProvisioningUpdates -configuration AppStoreDistribution
