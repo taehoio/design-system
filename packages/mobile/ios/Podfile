@@ -36,9 +36,15 @@ target 'DesignSystem' do
     projects.each do |project|
       project.build_configurations.each do |config|
         config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'i386 arm64'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
       end
-
       project.save()
+    end
+
+    installer.pods_project.targets.each do |target|
+      if target.name == "React-Core-AccessibilityResources"
+        target.remove_from_project
+      end
     end
   end
 end
