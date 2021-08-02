@@ -34,17 +34,6 @@
   "resolutions": {
     "@types/react": "^17"
   },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
