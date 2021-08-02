@@ -54,7 +54,7 @@ jobs:
       - name: Test
         run: yarn Test
 
-  test:
+  build-android:
     name: Build Android
     runs-on: ubuntu-20.04
     steps:
