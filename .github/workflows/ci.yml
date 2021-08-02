@@ -89,7 +89,7 @@ jobs:
 
       - name: Gradle Build
         working-directory: ./packages/mobile/android
-        run: ./gradlew assembleRelease
+        run: ./gradlew bundleRelease
 
   build-ios:
     name: Build Android
