@@ -54,6 +54,48 @@ jobs:
       - name: Test
         run: yarn test
 
+  build-ios:
+    name: Build iOS
+    runs-on: macos-11.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Get yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Get pod cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./packages/mobile/ios/Pods
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install iOS pods
+        working-directory: ./packages/mobile/ios
+        run: pod install
+
+      - name: Gradle iOS
+        working-directory: ./packages/mobile/ios
+        run: |
+          xcodebuild -workspace DesignSystem.xcworkspace -scheme DesignSystem archive -archivePath DesignSystem.xcarchive -allowProvisioningUpdates -configuration AppStoreDistribution
+
   build-android:
     name: Build Android
     runs-on: ubuntu-20.04
@@ -90,54 +132,3 @@ jobs:
       - name: Gradle Build
         working-directory: ./packages/mobile/android
         run: ./gradlew bundleRelease
-
-  build-ios:
-    name: Build Android
-    runs-on: macos-11.0
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Get yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Get pod cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - uses: actions/cache@v2
-        with:
-          path: |
-            ./packages/mobile/ios/Pods
-            ~/Library/Developer/Xcode/DerivedData
-          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pods-
-
-      - name: Install iOS pods
-        working-directory: ./packages/mobile/ios
-        run: pod install
-
-      - name: Gradle iOS
-        working-directory: ./packages/mobile/ios
-        run: |
-          xcodebuild -workspace DesignSystem.xcworkspace -scheme DesignSystem archive -archivePath DesignSystem.xcarchive -allowProvisioningUpdates -configuration AppStoreDistribution
