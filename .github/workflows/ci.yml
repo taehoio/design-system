@@ -55,6 +55,7 @@ jobs:
         run: yarn test
 
   build-ios:
+    if: 'false'
     name: Build iOS
     runs-on: macos-latest
     steps:
@@ -91,12 +92,13 @@ jobs:
         working-directory: ./packages/mobile/ios
         run: pod install
 
-      - name: Gradle iOS
+      - name: Build iOS app
         working-directory: ./packages/mobile/ios
         run: |
           xcodebuild -workspace DesignSystem.xcworkspace -scheme DesignSystem archive -archivePath DesignSystem.xcarchive -allowProvisioningUpdates -configuration AppStoreDistribution
 
   build-android:
+    if: 'false'
     name: Build Android
     runs-on: ubuntu-20.04
     steps:
