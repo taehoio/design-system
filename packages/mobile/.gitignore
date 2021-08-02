@@ -1,3 +1,5 @@
+*.xcarchive
+
 # OSX
 #
 .DS_Store
