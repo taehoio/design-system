@@ -1,9 +1,10 @@
-name: 'Chromatic'
+name: 'chromatic'
 
 on: push
 
 jobs:
-  chromatic-deployment:
+  chromatic-components:
+    name: 'Deploy components package into chromatic'
     runs-on: ubuntu-latest
     steps:
       - name: Get yarn cache directory path
@@ -28,3 +29,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: bc273b0e43d0
+          workingDir: ./packages/components
