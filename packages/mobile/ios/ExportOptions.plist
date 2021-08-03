@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>method</key>
+  <string>development</string>
+
+  <key>teamID</key>
+  <string>5P98SJXVLP</string>
+
+  <key>signingCertificate</key>
+  <string>YOUR CERT</string>
+
+  <key>provisioningProfiles</key>
+  <dict>
+    <key>YOUR APP ID</key>
+    <string>YOUR PROFILE NAME</string>
+  </dict>
+
+  <key>destination</key>
+  <string>upload</string>
+</dict>
+</plist>
