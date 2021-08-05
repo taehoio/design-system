@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MagnusScreen from './screens/MagnusScreen';
 
 const styles = StyleSheet.create({
   screen: {
@@ -21,6 +22,7 @@ type RootStackParamList = {
   Profile: undefined;
   Settings: undefined;
   Details: undefined;
+  Magnus: undefined;
 };
 
 const HomeScreen = ({
@@ -107,6 +109,7 @@ const linkConfig = {
         Details: 'details',
       },
     },
+    MagnusScreen: 'magnus',
   },
 };
 
@@ -129,6 +132,8 @@ export const App = () => {
               iconName = 'ios-information-circle-outline';
             } else if (route.name === 'Settings') {
               iconName = 'ios-list-outline';
+            } else if (route.name === 'Magnus') {
+              iconName = 'ios-person-outline';
             }
 
             // You can return any component that you like here!
@@ -138,6 +143,7 @@ export const App = () => {
         tabBarOptions={{}}>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen name="Magnus" component={MagnusScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
