@@ -1,4 +1,4 @@
-package com.designsystem;
+package io.taeho.designsystem;
 
 import com.facebook.react.ReactActivity;
 
