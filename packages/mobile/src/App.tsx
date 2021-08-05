@@ -95,6 +95,16 @@ const SettingsStackScreen = () => {
   );
 };
 
+const MagnusStack = createStackNavigator();
+
+const MagnusStackScreen = () => {
+  return (
+    <MagnusStack.Navigator>
+      <MagnusStack.Screen name="Magnus" component={MagnusScreen} />
+    </MagnusStack.Navigator>
+  );
+};
+
 const linkConfig = {
   screens: {
     HomeStack: {
@@ -109,7 +119,11 @@ const linkConfig = {
         Details: 'details',
       },
     },
-    MagnusScreen: 'magnus',
+    MagnusStackScreen: {
+      screens: {
+        Magnus: 'magnus',
+      },
+    },
   },
 };
 
@@ -143,7 +157,7 @@ export const App = () => {
         tabBarOptions={{}}>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
-        <Tab.Screen name="Magnus" component={MagnusScreen} />
+        <Tab.Screen name="Magnus" component={MagnusStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
