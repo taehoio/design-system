@@ -78,11 +78,11 @@ jobs:
 
       - name: Build bundle for iOS
         working-directory: ./package/mobile
-        run: node_modules/.bin/react-native bundle --platform ios --dev false --entry-file index.js --bundle-output index.ios.bundle
+        run: ../../node_modules/.bin/react-native bundle --platform ios --dev false --entry-file index.js --bundle-output index.ios.bundle
 
       - name: Build bundle for Android
         working-directory: ./package/mobile
-        run: node_modules/.bin/react-native bundle --platform android --dev false --entry-file index.js --bundle-output index.android.bundle
+        run: ../../node_modules/.bin/react-native bundle --platform android --dev false --entry-file index.js --bundle-output index.android.bundle
 
   build-ios:
     if: 'false'
