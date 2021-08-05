@@ -77,11 +77,11 @@ jobs:
         run: yarn
 
       - name: Build bundle for iOS
-        working-directory: ./package/mobile
+        working-directory: ./packages/mobile
         run: yarn run react-native bundle --platform ios --dev false --entry-file index.js --bundle-output index.ios.bundle
 
       - name: Build bundle for Android
-        working-directory: ./package/mobile
+        working-directory: ./packages/mobile
         run: yarn run react-native bundle --platform android --dev false --entry-file index.js --bundle-output index.android.bundle
 
   build-ios:
