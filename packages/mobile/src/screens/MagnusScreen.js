@@ -72,7 +72,8 @@ const MagnusScreen = () => {
             rounded="md"
             h={150}
             bgImg={{
-              uri: 'https://asiamountains.net/assets/lib/resized/174/363x204.jpg',
+              uri:
+                'https://asiamountains.net/assets/lib/resized/174/363x204.jpg',
             }}
           />
           <Image
@@ -80,7 +81,8 @@ const MagnusScreen = () => {
             rounded="md"
             h={150}
             source={{
-              uri: 'https://asiamountains.net/assets/lib/resized/174/363x204.jpg',
+              uri:
+                'https://asiamountains.net/assets/lib/resized/174/363x204.jpg',
             }}
           />
           <Div flexDir="row" mt="sm">
@@ -405,7 +407,8 @@ const MagnusScreen = () => {
               mr="sm"
               shadow={1}
               source={{
-                uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
+                uri:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png',
               }}
             />
           </Div>
