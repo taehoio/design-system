@@ -54,8 +54,8 @@ jobs:
       - name: Test
         run: yarn test
 
-  build-bundle:
-    name: Build bundle
+  build-bundles:
+    name: Build bundles
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
